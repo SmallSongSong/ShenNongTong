@@ -128,25 +128,7 @@ class RegisterViewController: UIViewController,UITextFieldDelegate  {
             return
         }else{
             
-            //let userName=namelb.text!
             let mailAndPD=maillb.text!+"&"+passwordlb.text!
-            //print(mailAndPD)
-            
-            /* let url = URL(string:"http://139.199.85.198:8080/app/newPlace3/q.php")!
-             Alamofire.request(url,parameters:["userName":userName,"MailAndPD":mailAndPD]).validate().responseJSON { response in
-             switch response.result.isSuccess {
-             case true:
-             if let value = response.result.value {
-             let json = JSON(value)
-             if let state = json["state"].string {
-             print("state:",state)
-             }
-             }
-             case false:
-             print(response.result.error!)
-             print("失败")
-             }
-             }*/
             
             registerClient.instance.requestForRegister(namelb.text!, MailAndPD:mailAndPD).validate().responseJSON{
                 /*
@@ -175,16 +157,7 @@ class RegisterViewController: UIViewController,UITextFieldDelegate  {
                     self.NoNetWorkAlet()
                 }else if (d == nil)
                 {
-                    let alertController = UIAlertController(title: "邮件已发送",
-                                                            message: "请在注册邮箱中点击注册链接，5秒后跳转至登录界面", preferredStyle: .alert)
-                    //显示提示框
-                    self.present(alertController, animated: true, completion: nil)
-                    //两秒钟后自动消失
-                    DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 2) {
-                        self.presentedViewController?.dismiss(animated: false, completion: nil)
-                        sleep(2)
-                        self.navigationController?.popViewController(animated: true)
-                    }
+                    self.alert("服务器信息错误")
                 }else
                 {
                     switch d!["state"] as! String{
@@ -193,6 +166,17 @@ class RegisterViewController: UIViewController,UITextFieldDelegate  {
                         self.alert("邮箱格式不正确！")
                     case "EmailHasIn":
                         self.alert("邮箱已被注册！")
+                    case "SUCCESS":
+                        let alertController = UIAlertController(title: "邮件已发送",
+                                                                message: "请在注册邮箱中点击注册链接，5秒后跳转至登录界面", preferredStyle: .alert)
+                        //显示提示框
+                        self.present(alertController, animated: true, completion: nil)
+                        //两秒钟后自动消失
+                        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 2) {
+                            self.presentedViewController?.dismiss(animated: false, completion: nil)
+                            sleep(2)
+                            self.navigationController?.popViewController(animated: true)
+                        }
                     default:
                         self.alert("未知的错误")
                     }
