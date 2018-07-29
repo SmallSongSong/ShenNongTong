@@ -11,7 +11,7 @@ import UIKit
 //var NameRequestFlag=0
 //var UserName:String=""
 class ProViewController: UIViewController,UITextFieldDelegate {
-
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.navigationController?.setNavigationBarHidden(false, animated: true)
@@ -35,7 +35,7 @@ class ProViewController: UIViewController,UITextFieldDelegate {
         let ScreenWidth=ScreenRect.size.width
         let ScreenHeight=ScreenRect.size.height
         
-
+        
         
         titlelb.frame=CGRect(x:ScreenWidth/8,y:ScreenHeight/6,width:ScreenWidth/8*6,height:ScreenHeight/25*3.4)
         
@@ -46,7 +46,7 @@ class ProViewController: UIViewController,UITextFieldDelegate {
         SureButton.frame=CGRect(x:ScreenWidth*0.39,y:ScreenHeight/4*2.6,width:ScreenWidth*0.22,height:ScreenHeight/25*2.2)
         RegisterButton.frame=CGRect(x:ScreenWidth*0.39,y:ScreenHeight/4*3.1,width:ScreenWidth*0.22,height:ScreenHeight/25*2.2)
         
-        RememberLabel.frame=CGRect(x:ScreenWidth*0.65,y:ScreenHeight/4*2.1,width:ScreenWidth*0.25,height:ScreenHeight/4*0.3)
+        RememberLabel.frame=CGRect(x:ScreenWidth*0.65,y:ScreenHeight/4*2.1,width:ScreenWidth*0.35,height:ScreenHeight/4*0.3)
         RememberSwitch.center=CGPoint(x:ScreenWidth*0.65+60,y:ScreenHeight/4*2.4+10)
         RememberSwitch.isOn=true
         RememberLabel.text="是否记住密码"
@@ -115,6 +115,9 @@ class ProViewController: UIViewController,UITextFieldDelegate {
         self.view.addSubview(RegisterButton)
         self.getNameAndPassword()
         
+        let reSize = CGSize(width: ScreenWidth, height: ScreenHeight)
+        self.view.backgroundColor=UIColor.init(patternImage:UIImage(named: "主页背景.png")!.reSizeImage(reSize: reSize))
+        
         // Do any additional setup after loading the view.
     }
     
@@ -135,11 +138,6 @@ class ProViewController: UIViewController,UITextFieldDelegate {
     fileprivate func login(){
         let Email = namelb.text!
         let password = passwordlb.text!
-        //self.saveNameAndPassword()
-        //接受json解包数据然后进行匹配返回登录状态以及返回登录结果。
-        //只有登录成功才保存密码，先这样子设定。
-
-        //print(Email+password)
         loginClient.instance.requestForLogin(Email, PD: password).responseJSON{
             json-> Void in
             let d=json.result.value as? NSDictionary
@@ -151,14 +149,12 @@ class ProViewController: UIViewController,UITextFieldDelegate {
             case "SUCCESS":
                 print("登录成功")
                 if(self.RememberSwitch.isOn){
-                self.saveNameAndPassword()
+                    self.saveNameAndPassword()
                 }
                 
                 UserModel.instance.UserLoaded=true
                 UserModel.instance.UserEmail=Email
                 self.getUserNameAndPushView()
-                //self.judgeFlag()
-                //网络的异步问题需要解决弄清楚啊，这个比较耽误事情。
             case "NOTUSER":
                 self.alert("该用户尚未注册！")
             case "DEFALUTPD":
@@ -183,98 +179,61 @@ class ProViewController: UIViewController,UITextFieldDelegate {
         passwordlb.text=password
     }
     
-    //gcd解决网络请求异步回掉，失败了。
-    /*
-    func getUserName(){
-        //var UserName:String=""
+    func getUserNameAndPushView(){
+        var UserName:String=""
         let UserEmail=UserModel.instance.UserEmail
-        let semaphore=DispatchSemaphore(value:1)
-        let getNameRequestQueue=DispatchQueue.global()
-        getNameRequestQueue.sync{
-            semaphore.wait()
-            RequestNameClient.instance.requestForUserName(UserEmail).responseJSON{
+        RequestNameClient.instance.requestForUserName(UserEmail).responseJSON{
             json-> Void in
             let d=json.result.value as? NSDictionary
             if (d==nil){
-                //self.alert("无用户名")
                 print("获取失败1")
-                semaphore.signal()
+                self.alert("获取个人信息失败")
                 return
             }
             switch d!["state"] as! String{
             case"SUCCESS":
                 print("获取用户名成功")
                 UserName=d!["userName"] as! String
-                print("111\(UserName)")
-                semaphore.signal()
             default:
                 UserName="无名氏"
                 print("获取失败2")
-                semaphore.signal()
             }
-                
-        }
-            print("sync结果\(UserName)")
             UserModel.instance.UserName=UserName
-            semaphore.signal()
+            let UserInfoPage=UserDetailViewController()
+            self.navigationController?.pushViewController(UserInfoPage, animated:true )
         }
-    }*/
-    
-    func getUserNameAndPushView(){
-        var UserName:String=""
-        let UserEmail=UserModel.instance.UserEmail
-        RequestNameClient.instance.requestForUserName(UserEmail).responseJSON{
-                json-> Void in
-                let d=json.result.value as? NSDictionary
-                if (d==nil){
-                    print("获取失败1")
-                    self.alert("获取个人信息失败")
-                    return
-                }
-                switch d!["state"] as! String{
-                case"SUCCESS":
-                    print("获取用户名成功")
-                    UserName=d!["userName"] as! String
-                default:
-                    UserName="无名氏"
-                    print("获取失败2")
-                }
-               UserModel.instance.UserName=UserName
-               let UserInfoPage=UserDetailViewController()
-               self.navigationController?.pushViewController(UserInfoPage, animated:true )
-            }
     }
     /*此方法在循环一定次数后大概2000多次，程序终止
-    func judgeFlag(){
-        if(NameRequestFlag==1){
-            print("结果\(UserName)")
-            UserModel.instance.UserName=UserName
-        }else{
-            judgeFlag()
-        }
-    }
-    */
+     func judgeFlag(){
+     if(NameRequestFlag==1){
+     print("结果\(UserName)")
+     UserModel.instance.UserName=UserName
+     }else{
+     judgeFlag()
+     }
+     }
+     */
     
     /*func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        namelb.resignFirstResponder()
-        passwordlb.resignFirstResponder()
-        return true
-    }*/
+     namelb.resignFirstResponder()
+     passwordlb.resignFirstResponder()
+     return true
+     }*/
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
     
-
+    
     /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
+     // MARK: - Navigation
+     
+     // In a storyboard-based application, you will often want to do a little preparation before navigation
+     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+     // Get the new view controller using segue.destinationViewController.
+     // Pass the selected object to the new view controller.
+     }
+     */
+    
 }

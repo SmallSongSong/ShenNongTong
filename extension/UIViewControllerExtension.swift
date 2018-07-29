@@ -50,7 +50,6 @@ extension UIViewController {
         }else{
             return true
         }
-        //因为用到了ARC技术，所以不用担心对象管理，除非互相定义调用
     }
     
     func NoNetWorkAlet(){

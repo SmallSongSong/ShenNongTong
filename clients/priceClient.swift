@@ -10,6 +10,7 @@
 import Foundation
 import Alamofire
 import UIKit
+import SwiftyJSON
 
 class priceClient{
     class var instance: priceClient{
@@ -21,8 +22,8 @@ class priceClient{
     
     let myBaseURL=MainNetModel.instance.myBaseUrl
     
-    func requestForPrice(_ row:Int,type:Array<String>)->DataRequest{
-        return Alamofire.request(myBaseURL+"price.php",parameters:["row":row,"type":type])
+    func requestForPrice(_ place:String, smallkind:String)->DataRequest{
+        return Alamofire.request(myBaseURL+"price.php",parameters:["place":place,"smallkind":smallkind])
     }
     
     

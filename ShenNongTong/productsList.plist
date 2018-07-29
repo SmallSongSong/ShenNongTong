@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<array>
+	<array>
+		<string>苹果</string>
+		<string>核桃</string>
+		<string>粮食</string>
+	</array>
+	<array>
+		<string>杨凌</string>
+		<string>商洛</string>
+		<string>西安</string>
+		<string>黑龙江</string>
+		<string>广东</string>
+		<string>河南</string>
+		<string>辽宁</string>
+		<string>深圳</string>
+	</array>
+	<array>
+		<string>红富士</string>
+		<string>小苹果</string>
+		<string>礼泉苹果</string>
+	</array>
+	<array>
+		<string>大核桃</string>
+		<string>小核桃</string>
+	</array>
+	<array>
+		<string>小米</string>
+		<string>大米</string>
+		<string>玉米</string>
+		<string>红薯</string>
+	</array>
+	<dict>
+		<key>红富士</key>
+		<string>hongfushi</string>
+		<key>小苹果</key>
+		<string>xiaopingguo</string>
+		<key>礼泉苹果</key>
+		<string>liquanpingguo</string>
+		<key>大核桃</key>
+		<string>dahetao</string>
+		<key>小核桃</key>
+		<string>xiaohetao</string>
+		<key>小米</key>
+		<string>xiaomi</string>
+		<key>大米</key>
+		<string>dami</string>
+		<key>玉米</key>
+		<string>yumi</string>
+		<key>红薯</key>
+		<string>hongshu</string>
+	</dict>
+</array>
+</plist>

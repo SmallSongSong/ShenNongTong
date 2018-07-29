@@ -10,7 +10,7 @@ import UIKit
 import Charts
 
 class ChartViewController: UIViewController {
-
+    
     var gridViewController: UICollectionGridViewController!
     var MylineChartView=LineChartView()
     
@@ -88,15 +88,15 @@ class ChartViewController: UIViewController {
         //pieChartView.data = pieChartData
         
         /*var colors: [UIColor] = []
-        
-        for i in 0..<dataPoints.count {
-            let red = Double(arc4random_uniform(256))
-            let green = Double(arc4random_uniform(256))
-            let blue = Double(arc4random_uniform(256))
-            
-            let color = UIColor(red: CGFloat(red/255), green: CGFloat(green/255), blue: CGFloat(blue/255), alpha: 1)
-            colors.append(color)
-        }*/
+         
+         for i in 0..<dataPoints.count {
+         let red = Double(arc4random_uniform(256))
+         let green = Double(arc4random_uniform(256))
+         let blue = Double(arc4random_uniform(256))
+         
+         let color = UIColor(red: CGFloat(red/255), green: CGFloat(green/255), blue: CGFloat(blue/255), alpha: 1)
+         colors.append(color)
+         }*/
         
         //pieChartDataSet.colors = colors
         
@@ -121,15 +121,15 @@ class ChartViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-
+    
     /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
+     // MARK: - Navigation
+     
+     // In a storyboard-based application, you will often want to do a little preparation before navigation
+     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+     // Get the new view controller using segue.destinationViewController.
+     // Pass the selected object to the new view controller.
+     }
+     */
+    
 }

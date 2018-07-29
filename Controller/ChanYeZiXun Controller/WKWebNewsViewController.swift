@@ -40,13 +40,13 @@ class WKWebNewsViewController:UIViewController,WKUIDelegate,WKNavigationDelegate
         
         self.view.addSubview(webView)
     }
-
+    
     
     @objc func returnToFatherPage()
     {
         self.navigationController?.popViewController(animated: true)
     }
-
+    
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()

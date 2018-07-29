@@ -77,7 +77,7 @@ class RegisterViewController: UIViewController,UITextFieldDelegate  {
         repeatpasswordlb.delegate=self
         
         SureButton.backgroundColor = UIColor.green
-        SureButton.setTitle("发送注册信息 ",for:UIControlState.normal)
+        SureButton.setTitle("确认",for:UIControlState.normal)
         SureButton.layer.cornerRadius = 10
         SureButton.layer.masksToBounds = true
         //SureButton.titleLabel?.adjustsFontSizeToFitWidth=true
@@ -92,6 +92,10 @@ class RegisterViewController: UIViewController,UITextFieldDelegate  {
         self.view.addSubview(passwordlb)
         self.view.addSubview(repeatpasswordlb)
         self.view.addSubview(SureButton)
+        
+        let reSize = CGSize(width: ScreenWidth, height: ScreenHeight)
+        self.view.backgroundColor=UIColor.init(patternImage:UIImage(named: "主页背景.png")!.reSizeImage(reSize: reSize))
+        
         super.viewDidLoad()
         // Do any additional setup after loading the view.
     }
@@ -131,26 +135,6 @@ class RegisterViewController: UIViewController,UITextFieldDelegate  {
             let mailAndPD=maillb.text!+"&"+passwordlb.text!
             
             registerClient.instance.requestForRegister(namelb.text!, MailAndPD:mailAndPD).validate().responseJSON{
-                /*
-                 response in
-                 //switch response.result.isSuccess{
-                 //case true:
-                 print(1111)
-                 //if let value = response.result.value {
-                 let json = JSON(response.result.value as! String)
-                 print("\(json)")
-                 if let state = json["state"].string {
-                 print("bug 成功")
-                 print(state)
-                 }
-                 //}
-                 //case false:
-                 //print("失败\n")
-                 //print((response.result.error)!)
-                 //}
-                 }*/
-                
-                
                 json-> Void in
                 let d = json.result.value as? NSDictionary
                 if(!self.JudgeNetWork()){
@@ -168,7 +152,7 @@ class RegisterViewController: UIViewController,UITextFieldDelegate  {
                         self.alert("邮箱已被注册！")
                     case "SUCCESS":
                         let alertController = UIAlertController(title: "邮件已发送",
-                                                                message: "请在注册邮箱中点击注册链接，5秒后跳转至登录界面", preferredStyle: .alert)
+                                                                message: "请在注册邮箱中点击注册链接，4秒后跳转至登录界面", preferredStyle: .alert)
                         //显示提示框
                         self.present(alertController, animated: true, completion: nil)
                         //两秒钟后自动消失

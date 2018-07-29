@@ -14,7 +14,7 @@ class LiuYanMessageModel {
             static let instance = LiuYanMessageModel()
         }
         return Instance.instance
-}
+    }
     var userCatalog=Array<String>()
     var messageCatalog=Array<String>()
     var newsID:String = ""

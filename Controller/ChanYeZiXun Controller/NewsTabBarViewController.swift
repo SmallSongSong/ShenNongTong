@@ -10,7 +10,7 @@ import UIKit
 import Alamofire
 
 class NewsTabBarViewController: UITabBarController {
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         var tempNewsNum:Int=0
@@ -30,8 +30,7 @@ class NewsTabBarViewController: UITabBarController {
         //discuss.tabBarItem.image = UIImage(named:"rightdiscuss")
         
         tempNewsNum=LiuYanMessageModel.instance.LiuYanNumber
-        print(tempNewsNum)
-        print("this!")
+
         discuss.tabBarItem.badgeValue=String(tempNewsNum)
         
         let PostLiuYan = UINavigationController(rootViewController:viewLiuYan)
@@ -40,27 +39,27 @@ class NewsTabBarViewController: UITabBarController {
         self.viewControllers = [main,discuss,PostLiuYan]
         //默认选中的webview
         self.selectedIndex = 0
-
+        
         // Do any additional setup after loading the view.
     }
-
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
     
     func SelectItem(selectedItem:Int){
-         self.selectedIndex=1
+        self.selectedIndex=1
     }
     
     /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
+     // MARK: - Navigation
+     
+     // In a storyboard-based application, you will often want to do a little preparation before navigation
+     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+     // Get the new view controller using segue.destinationViewController.
+     // Pass the selected object to the new view controller.
+     }
+     */
+    
 }

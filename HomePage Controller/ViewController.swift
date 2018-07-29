@@ -10,7 +10,7 @@ import UIKit
 import Alamofire
 
 class ViewController: UIViewController {
-
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.navigationController?.setNavigationBarHidden(false, animated: true)
@@ -55,74 +55,74 @@ class ViewController: UIViewController {
         
         
         
-        bt1.frame=CGRect(x:ScreenWidth/8,y:ScreenHeight/25*3,width:ScreenHeight/25*3.6,height:ScreenHeight/25*3.6)
-        lb1.frame=CGRect(x:ScreenWidth/8,y:ScreenHeight/25*7,width:ScreenHeight/25*3.6,height:ScreenHeight/25)
+        bt1.frame=CGRect(x:ScreenWidth/20*1.4,y:ScreenHeight/25*3,width:ScreenHeight/25*5,height:ScreenHeight/25*5)
+        lb1.frame=CGRect(x:ScreenWidth/8,y:ScreenHeight/25*8.3,width:ScreenHeight/25*3.6,height:ScreenHeight/25)
         
-        bt2.frame=CGRect(x:ScreenWidth/8*5,y:ScreenHeight/25*3,width:ScreenHeight/25*3.6,height:ScreenHeight/25*3.6)
-        lb2.frame=CGRect(x:ScreenWidth/8*5,y:ScreenHeight/25*7,width:ScreenHeight/25*3.6,height:ScreenHeight/25)
-        
-        
-        bt3.frame=CGRect(x:ScreenWidth/8,y:ScreenHeight/25*9,width:ScreenHeight/25*3.6,height:ScreenHeight/25*3.6)
-        lb3.frame=CGRect(x:ScreenWidth/8,y:ScreenHeight/25*13,width:ScreenHeight/25*3.6,height:ScreenHeight/25)
-        
-        bt4.frame=CGRect(x:ScreenWidth/8*5,y:ScreenHeight/25*9,width:ScreenHeight/25*3.6,height:ScreenHeight/25*3.6)
-        lb4.frame=CGRect(x:ScreenWidth/8*5,y:ScreenHeight/25*13,width:ScreenHeight/25*3.6,height:ScreenHeight/25)
-        
-        bt5.frame=CGRect(x:ScreenWidth/8,y:ScreenHeight/25*15,width:ScreenHeight/25*3.6,height:ScreenHeight/25*3.6)
-        lb5.frame=CGRect(x:ScreenWidth/8,y:ScreenHeight/25*19,width:ScreenHeight/25*3.6,height:ScreenHeight/25)
-        
-        bt6.frame=CGRect(x:ScreenWidth/8*5,y:ScreenHeight/25*15,width:ScreenHeight/25*3.6,height:ScreenHeight/25*3.6)
-        lb6.frame=CGRect(x:ScreenWidth/8*5,y:ScreenHeight/25*19,width:ScreenHeight/25*3.6,height:ScreenHeight/25)
+        bt2.frame=CGRect(x:ScreenWidth/20*11,y:ScreenHeight/25*3,width:ScreenHeight/25*5,height:ScreenHeight/25*5)
+        lb2.frame=CGRect(x:ScreenWidth/20*12,y:ScreenHeight/25*8.3,width:ScreenHeight/25*3.6,height:ScreenHeight/25)
         
         
-        bt1.layer.cornerRadius=ScreenHeight/25*1.8
+        bt3.frame=CGRect(x:ScreenWidth/20*1.4,y:ScreenHeight/25*9.6,width:ScreenHeight/25*5,height:ScreenHeight/25*5)
+        lb3.frame=CGRect(x:ScreenWidth/8,y:ScreenHeight/25*14.8,width:ScreenHeight/25*3.6,height:ScreenHeight/25)
+        
+        bt4.frame=CGRect(x:ScreenWidth/20*11,y:ScreenHeight/25*9.6,width:ScreenHeight/25*5,height:ScreenHeight/25*5)
+        lb4.frame=CGRect(x:ScreenWidth/20*12,y:ScreenHeight/25*14.8,width:ScreenHeight/25*3.6,height:ScreenHeight/25)
+        
+        bt5.frame=CGRect(x:ScreenWidth/20*1.4,y:ScreenHeight/25*16,width:ScreenHeight/25*5,height:ScreenHeight/25*5)
+        lb5.frame=CGRect(x:ScreenWidth/8,y:ScreenHeight/25*21.2,width:ScreenHeight/25*3.6,height:ScreenHeight/25)
+        
+        bt6.frame=CGRect(x:ScreenWidth/20*11,y:ScreenHeight/25*16,width:ScreenHeight/25*5,height:ScreenHeight/25*5)
+        lb6.frame=CGRect(x:ScreenWidth/20*12,y:ScreenHeight/25*21.2,width:ScreenHeight/25*3.6,height:ScreenHeight/25)
+        
+        
+        bt1.layer.cornerRadius=ScreenHeight/25*2.5
         bt1.layer.masksToBounds=true
-        bt1.backgroundColor=UIColor.blue
+        bt1.setBackgroundImage(UIImage(named:"新闻按钮"),for:.normal)
         bt1.addTarget(self, action: #selector(pushPage1), for: UIControlEvents.touchUpInside)
         
         lb1.text="产业资讯"
         lb1.textAlignment=NSTextAlignment.center
-       
         
-        bt2.layer.cornerRadius=ScreenHeight/25*1.8
+        
+        bt2.layer.cornerRadius=ScreenHeight/25*2.5
         bt2.layer.masksToBounds=true
-        bt2.backgroundColor=UIColor.green
+        bt2.setBackgroundImage(UIImage(named:"价格按钮"),for:.normal)
         bt2.addTarget(self, action: #selector(pushPage2), for: UIControlEvents.touchUpInside)
         
         lb2.text="市场行情"
         lb2.textAlignment=NSTextAlignment.center
         
-        bt3.layer.cornerRadius=ScreenHeight/25*1.8
+        bt3.layer.cornerRadius=ScreenHeight/25*2.5
         bt3.layer.masksToBounds=true
-        bt3.backgroundColor=UIColor.green
+        bt3.setBackgroundImage(UIImage(named:"地点按钮"),for:.normal)
         bt3.addTarget(self, action: #selector(pushPage3), for: UIControlEvents.touchUpInside)
         
         lb3.text="农业示范站"
         lb3.textAlignment=NSTextAlignment.center
         
-        bt4.layer.cornerRadius=ScreenHeight/25*1.8
+        bt4.layer.cornerRadius=ScreenHeight/25*2.5
         bt4.layer.masksToBounds=true
-        bt4.backgroundColor=UIColor.green
+        bt4.setBackgroundImage(UIImage(named:"农技服务按钮"),for:.normal)
         bt4.addTarget(self, action: #selector(pushPage4), for: UIControlEvents.touchUpInside)
         
         lb4.text="农技服务"
         lb4.textAlignment=NSTextAlignment.center
         
-        bt5.layer.cornerRadius=ScreenHeight/25*1.8
+        bt5.layer.cornerRadius=ScreenHeight/25*2.5
         bt5.layer.masksToBounds=true
-        bt5.backgroundColor=UIColor.green
+        bt5.setBackgroundImage(UIImage(named:"视频按钮"),for:.normal)
         bt5.addTarget(self, action: #selector(pushPage5), for: UIControlEvents.touchUpInside)
         
         lb5.text="专家解答"
         lb5.textAlignment=NSTextAlignment.center
         
-        bt6.layer.cornerRadius=ScreenHeight/25*1.8
+        bt6.layer.cornerRadius=ScreenHeight/25*2.5
         bt6.layer.masksToBounds=true
-        bt6.backgroundColor=UIColor.green
+        bt6.setBackgroundImage(UIImage(named:"聊天按钮"),for:.normal)
         bt6.addTarget(self, action: #selector(pushPage6), for: UIControlEvents.touchUpInside)
         lb6.text="智能客服"
         lb6.textAlignment=NSTextAlignment.center
-       
+        
         
         self.view.addSubview(bt1)
         self.view.addSubview(bt2)
@@ -136,9 +136,11 @@ class ViewController: UIViewController {
         self.view.addSubview(lb4)
         self.view.addSubview(lb5)
         self.view.addSubview(lb6)
+        let reSize = CGSize(width: ScreenWidth, height: ScreenHeight)
+        self.view.backgroundColor=UIColor.init(patternImage:UIImage(named: "主页背景.png")!.reSizeImage(reSize: reSize))
         super.viewDidLoad()
     }
-
+    
     @objc func pushPage1(_ button:UIButton){
         if(JudgeNetWork()){
             let sendSignal:Int=1
@@ -146,7 +148,7 @@ class ViewController: UIViewController {
                 json -> Void in
                 let d = json.result.value as? NSDictionary
                 if d == nil {
-                    self.alert("网络连接失败!21")
+                    self.alert("网络连接失败!")
                     return
                 }
                 switch d!["state"] as! String  {
@@ -160,11 +162,11 @@ class ViewController: UIViewController {
                     let discussnumber = d! ["discussnumber"]as! Array<Int>
                     let newsID=d! ["newsID"]as! Array<String>
                     
-                    NewsModel.instance.NewsImageNames=picturesURL//取值时是引用还是复制了泥？
+                    NewsModel.instance.NewsImageNames=picturesURL
                     NewsModel.instance.NewsTitles=Titles
                     NewsModel.instance.NewsDetails=Details
                     NewsModel.instance.urllists=URLS
-
+                    
                     NewsModel.instance.DiscussNumber=discussnumber
                     NewsModel.instance.newsID = newsID
                     self.pushChanyePage()
@@ -183,7 +185,6 @@ class ViewController: UIViewController {
     }
     
     @objc func pushPage3(_ button:UIButton){
-        Position.instance.MyInit()
         let page3 = PositionViewController()
         self.navigationController?.pushViewController(page3, animated: true)
     }
@@ -193,12 +194,12 @@ class ViewController: UIViewController {
             pushChanPinPage()
         }
     }
-
+    
     @objc func pushPage5(_ button:UIButton){
         if(UserModel.instance.UserLoaded==true){
-        //视频直播间界面
-        //let page5 = ProViewController()
-        //self.navigationController?.pushViewController(page5, animated: true)
+            //视频直播间界面
+            //let page5 = ProViewController()
+            //self.navigationController?.pushViewController(page5, animated: true)
         }else{
             self.alert("请先登录！")
         }
@@ -211,25 +212,24 @@ class ViewController: UIViewController {
     }
     
     @objc func JumpToSet(){
-        let settingPage=SmartChatViewController()
+        let settingPage = SettingViewController()
         self.navigationController?.pushViewController(settingPage, animated: true)
     }
     
     @objc func JumpToLoad(){
-        let loadPage=ProViewController()
+        let loadPage = ProViewController()
         self.navigationController?.pushViewController(loadPage, animated: true)
     }
     @objc func JumpToMyInfo(){
-        let MyInfoPage=UserDetailViewController()
+        let MyInfoPage = UserDetailViewController()
         self.navigationController?.pushViewController(MyInfoPage, animated: true)
     }
     
     func pushChanyePage(){
-        //NewsModel.instance.myInit()
         let page1 = ChanYeZiXunViewController()
         self.navigationController?.pushViewController(page1, animated: true)
     }
- 
+    
     func pushChanPinPage(){
         ServiceKinds.instance.myInit()
         let page4 = ChanPinFuWuViewController()
@@ -240,13 +240,13 @@ class ViewController: UIViewController {
         let page2 = PriceViewController()
         self.navigationController?.pushViewController(page2, animated: true)
     }
-
-
+    
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-
-
+    
+    
 }
 

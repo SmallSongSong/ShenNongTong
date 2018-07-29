@@ -8,30 +8,27 @@
 
 import UIKit
 import Alamofire
-//这个界面因为接受数据写的有会有隐形崩溃的危险，从新弄个model吧，然后在webnews点击那里就进行请求。
-class LiuYanMessageViewController: UIViewController,UITableViewDelegate, UITableViewDataSource {
 
+class LiuYanMessageViewController: UIViewController,UITableViewDelegate, UITableViewDataSource {
+    
     var tableView:UITableView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         self.tableView=UITableView(frame:self.view.frame,style:.plain)
         self.tableView.delegate=self
         self.tableView.dataSource=self
         self.tableView.register(UITableViewCell.self, forCellReuseIdentifier: "SwiftCell")
-
-        print("111")
+        
         self.tableView.estimatedRowHeight=50
-        print("222")
         
         self.tableView.rowHeight = UITableViewAutomaticDimension
         self.view.addSubview(self.tableView)
-
-        print("良好")
+        
         // Do any additional setup after loading the view.
     }
-
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -72,18 +69,18 @@ class LiuYanMessageViewController: UIViewController,UITableViewDelegate, UITable
         let subtitleString = NSAttributedString(string:subtitle,attributes:subtitleAttributes)
         titleString.append(subtitleString)
         return titleString
-    
+        
     }
     
     
     /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
+     // MARK: - Navigation
+     
+     // In a storyboard-based application, you will often want to do a little preparation before navigation
+     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+     // Get the new view controller using segue.destinationViewController.
+     // Pass the selected object to the new view controller.
+     }
+     */
+    
 }

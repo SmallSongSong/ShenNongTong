@@ -9,7 +9,7 @@
 import UIKit
 
 class ChanPinWebViewController: UIViewController,UIWebViewDelegate {
-
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.navigationController?.setNavigationBarHidden(false, animated: true)
@@ -28,12 +28,12 @@ class ChanPinWebViewController: UIViewController,UIWebViewDelegate {
         webView.delegate=self
         webView.scalesPageToFit=true
         webView.backgroundColor=UIColor.clear
-
+        
         let url=URL(string:ServiceKinds.instance.GetURLS[ServiceKinds.instance.selectedRow])
         print(ServiceKinds.instance.GetURLS[ServiceKinds.instance.selectedRow])
         print("REmind!")
-        let urlRequest=NSURLRequest(url:url!)
-        webView.loadRequest(urlRequest as URLRequest)
+        let urlRequest=URLRequest(url:url!)
+        webView.loadRequest(urlRequest)
         webView.scrollView.bounces=false
         self.view.addSubview(webView)
         
@@ -46,7 +46,7 @@ class ChanPinWebViewController: UIViewController,UIWebViewDelegate {
     func webViewDidFinishLoad(_ webView: UIWebView) {
         UIApplication.shared.isNetworkActivityIndicatorVisible=false
     }
-
+    
     @objc func returnToFatherPage()
     {
         //PAK.instance.SevenDaysPrice.removeAll()
@@ -60,15 +60,15 @@ class ChanPinWebViewController: UIViewController,UIWebViewDelegate {
         // Dispose of any resources that can be recreated.
     }
     
-
+    
     /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
+     // MARK: - Navigation
+     
+     // In a storyboard-based application, you will often want to do a little preparation before navigation
+     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+     // Get the new view controller using segue.destinationViewController.
+     // Pass the selected object to the new view controller.
+     }
+     */
+    
 }

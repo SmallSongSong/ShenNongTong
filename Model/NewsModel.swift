@@ -14,7 +14,7 @@ class NewsModel {
             static let instance = NewsModel()
         }
         return Instance.instance
-}
+    }
     var NewsImageNames=Array<String>()      //存储标题图
     //var imageLengths=Array<Int>()         //图片集长度
     var NewsTitles=Array<String>()          //新闻名称

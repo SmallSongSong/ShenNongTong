@@ -36,6 +36,9 @@ class ChanPinFuWuViewController: UIViewController,UITableViewDelegate,UITableVie
         /*let indexPath=IndexPath(row:6,section:0)
          tableView.scrollToRow(at: indexPath, at: UITableViewScrollPosition.top, animated: true)*/
         
+        let reSize = CGSize(width: ScreenWidth, height: ScreenHeight)
+        self.view.backgroundColor=UIColor.init(patternImage:UIImage(named: "主页背景.png")!.reSizeImage(reSize: reSize))
+        
         self.view.addSubview(tableView)
         
         // Do any additional setup after loading the view.
@@ -45,7 +48,7 @@ class ChanPinFuWuViewController: UIViewController,UITableViewDelegate,UITableVie
     
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 8
+        return ServiceKinds.instance.KindTitles.count
     }
     
     
@@ -97,8 +100,6 @@ class ChanPinFuWuViewController: UIViewController,UITableViewDelegate,UITableVie
                 self.alert("网络连接失败")
                 return
             }
-            //let stateText=d!["URL"]as! Array<String>
-            //print("注意二:\(stateText)!")
             switch d!["state"] as! String {
             case "SUCCESS":
                 let URLS = d! ["URL"]as! Array<String>

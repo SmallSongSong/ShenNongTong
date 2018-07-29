@@ -14,13 +14,13 @@ class ServiceKinds {
             static let instance = ServiceKinds()
         }
         return Instance.instance
-}
-
-var kindPictures=Array<String>()
-var KindTitles=Array<String>()
-var kindDetails=Array<String>()
-var selectedRow:Int = 0
-var GetURLS=Array<String>()
+    }
+    
+    var kindPictures=Array<String>()
+    var KindTitles=Array<String>()
+    var kindDetails=Array<String>()
+    var selectedRow:Int = 0
+    var GetURLS=Array<String>()
     
     func Clear(){
         self.KindTitles.removeAll()
@@ -34,34 +34,28 @@ var GetURLS=Array<String>()
         
         GetURLS=[""]
         //注意：这里从后台接受到的图片大小一定要统一规格
-        kindPictures.append("1")
-        kindPictures.append("2")
-        kindPictures.append("3")
-        kindPictures.append("4")
-        kindPictures.append("5")
-        kindPictures.append("6")
-        kindPictures.append("7")
-        kindPictures.append("8")
+        kindPictures.append("苹果")
+        kindPictures.append("红薯和玉米")
+        kindPictures.append("猕猴桃")
+        kindPictures.append("大核桃")
+        kindPictures.append("小麦")
+        kindPictures.append("水稻")
         
         KindTitles.append("苹果相关")
+        KindTitles.append("红薯玉米相关")
         KindTitles.append("猕猴桃相关")
-        KindTitles.append("核桃相关")
-        KindTitles.append("葡萄相关")
-        KindTitles.append("茶叶相关")
-        KindTitles.append("水产相关")
-        KindTitles.append("蔬菜相关")
-        KindTitles.append("苹粮油相关")
+        KindTitles.append("大核桃相关")
+        KindTitles.append("小麦相关")
+        KindTitles.append("水稻相关")
         
-        kindDetails.append("苹果相关的种植，选苗，防虫害，采摘，管理相关文章")
-        kindDetails.append("猕猴桃相关的种植，选苗，防虫害，采摘，管理相关文章")
-        kindDetails.append("核桃相关的种植，选苗，防虫害，采摘，管理相关文章")
-        kindDetails.append("葡萄相关的种植，选苗，防虫害，采摘，管理相关文章")
-        kindDetails.append("茶叶相关的种植，选苗，防虫害，采摘，管理相关文章")
-        kindDetails.append("水产相关的种植，选苗，防虫害，采摘，管理相关文章")
-        kindDetails.append("蔬菜相关的种植，选苗，防虫害，收获，管理相关文章")
-        kindDetails.append("粮油相关的种植，选苗，防虫害，收获，管理相关文章")
+        kindDetails.append("苹果种植及防虫害等文章")
+        kindDetails.append("红薯和玉米的文章")
+        kindDetails.append("猕猴桃种植及防虫害等文章")
+        kindDetails.append("大核桃桃种植及防虫害等文章")
+        kindDetails.append("小麦桃种植及防虫害等文章")
+        kindDetails.append("水稻桃种植及防虫害等文章")
         
-}
+    }
     deinit {
         print("ServiceKinds被释放")
     }

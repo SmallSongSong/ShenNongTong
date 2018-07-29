@@ -13,7 +13,7 @@ class UserModel {
             static let instance = UserModel()
         }
         return Instance.instance
-}
+    }
     var UserLoaded = false
     var UserName:String="无名氏"
     var UserEmail:String=""

@@ -10,9 +10,7 @@ import Foundation
 import UIKit
 
 extension UIImage {
-    /**
-     *  重设图片大小
-     */
+    //重设图片大小
     func reSizeImage(reSize:CGSize)->UIImage {
         //UIGraphicsBeginImageContext(reSize);
         UIGraphicsBeginImageContextWithOptions(reSize,false,UIScreen.main.scale)

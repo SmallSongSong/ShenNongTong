@@ -53,6 +53,9 @@ class UserDetailViewController:UIViewController{
         self.view.addSubview(Emaillb)
         self.view.addSubview(Identify)
         self.view.backgroundColor=UIColor.white
+        
+        let reSize = CGSize(width: ScreenWidth, height: ScreenHeight)
+        self.view.backgroundColor=UIColor.init(patternImage:UIImage(named: "主页背景.png")!.reSizeImage(reSize: reSize))
     }
     
     @objc func returnToHomePage()

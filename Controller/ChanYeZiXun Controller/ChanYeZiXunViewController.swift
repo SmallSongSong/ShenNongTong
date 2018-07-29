@@ -19,8 +19,6 @@ class ChanYeZiXunViewController: UIViewController,UITableViewDelegate,UITableVie
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.navigationController?.setNavigationBarHidden(false, animated: true)
-        //print(NewsModel.instance.NewsTitles.count)
-        //print("TTT")
     }
     
     
@@ -49,6 +47,9 @@ class ChanYeZiXunViewController: UIViewController,UITableViewDelegate,UITableVie
         /*let indexPath=IndexPath(row:6,section:0)
         tableView.scrollToRow(at: indexPath, at: UITableViewScrollPosition.top, animated: true)*/
         
+        let reSize = CGSize(width: ScreenWidth, height: ScreenHeight)
+        self.view.backgroundColor=UIColor.init(patternImage:UIImage(named: "主页背景.png")!.reSizeImage(reSize: reSize))
+   
         tableView.addSubview(refreshControl)
         self.view.addSubview(tableView)
         
@@ -62,9 +63,6 @@ class ChanYeZiXunViewController: UIViewController,UITableViewDelegate,UITableVie
     }
     
     @objc func refreshData(){
-        // print("Refresh.\n")
-        print("OK")
-        
         let sendSignal:Int=233
         reFreshTimes+=1
         refreshControl.attributedTitle=NSAttributedString(string:"新闻加载中......")
@@ -72,30 +70,14 @@ class ChanYeZiXunViewController: UIViewController,UITableViewDelegate,UITableVie
         newsClient.instance.requestForNews(sendSignal, type: reFreshTimes).responseJSON {
             
             json -> Void in
-            //response in
             print("进入刷新！！！！！！！！！！！！！！！！！！！！！！！！")
             let d = json.result.value as? NSDictionary
             if d == nil {
                 self.alert("网络连接失败3")
-                self.refreshControl.attributedTitle = NSAttributedString(string: "刷新完成")
+                self.refreshControl.attributedTitle = NSAttributedString(string: "刷新失败")
                 self.refreshControl.endRefreshing()
                 return
             }
-            
-            
-            let JsonD=JSON(json.result.value)
-            print("注意\n\(JsonD)")
-            if let T1=JsonD["state"].string{
-                print("T1:\(T1)")
-            }else{
-                print("T1 Error")
-            }
-
-            if let T2=JsonD["URL"].arrayObject{
-                let url0=T2[0]as! String
-                print("URL0:\(url0)")
-            }
-            
             switch d!["state"] as! String {
             case "SUCCESS":
                 print("刷新成功")
@@ -107,7 +89,7 @@ class ChanYeZiXunViewController: UIViewController,UITableViewDelegate,UITableVie
                 let newsID = d! ["newsID"]as! Array<String>
                 let Discussnumber = d! ["discussnumber"]as! Array<Int>
                 
-                NewsModel.instance.NewsImageNames=picturesURL//取值时是引用还是复制了泥？可能在这里出现了问题
+                NewsModel.instance.NewsImageNames=picturesURL
                 NewsModel.instance.NewsTitles=Titles
                 NewsModel.instance.NewsDetails=Details
                 NewsModel.instance.urllists=URLS
@@ -124,24 +106,10 @@ class ChanYeZiXunViewController: UIViewController,UITableViewDelegate,UITableVie
             self.refreshControl.attributedTitle = NSAttributedString(string: "刷新完成")
             self.refreshControl.endRefreshing()
         }
-        //移除老数据
-        //添加新数据
-        //加载数据,目前就打乱一下排序就行
-        //var Refresh:Int = 3
-        //然后发送Refresh到服务器端
-       /* timer = Timer.scheduledTimer(timeInterval: 5.0, target: self,
-                                     selector: #selector(ChanYeZiXunViewController.timeOut), userInfo: nil, repeats: false)
-        */
-        
-        //tableView.reloadData()
-        
-        //self.refreshControl.endRefreshing()
-        //refreshControl.attributedTitle = NSAttributedString(string: "刷新完成")
     }
     
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        //print("长度是 \(NewsModel.instance.NewsTitles.count)\nHHHHHHHH")
         return NewsModel.instance.NewsTitles.count
         
     }
@@ -176,15 +144,12 @@ class ChanYeZiXunViewController: UIViewController,UITableViewDelegate,UITableVie
             urls.append(URL(string:transTemp)!)
         }
         
-        //进行顺序网络图片加载
-        //cell?.imageView?.image=UIImage(data:(try! Data(contentsOf: urls[indexPath.row])))?.reSizeImage(reSize: reSize)
-        
-        
         //异步进行网络图片加载
         loadImage((cell?.imageView)!, getURL: urls, row: indexPath.row)
         //cell?.imageView?.image = UIImage(named: NewsModel.instance.NewsImageNames[indexPath.row])?.reSizeImage(reSize: reSize)
+        cell?.textLabel?.numberOfLines=0
         cell?.textLabel?.text = NewsModel.instance.NewsTitles[indexPath.row]
-        
+        cell?.detailTextLabel?.numberOfLines=2
         cell?.detailTextLabel?.text = NewsModel.instance.NewsDetails[indexPath.row]
         cell?.accessoryType = UITableViewCellAccessoryType.disclosureIndicator
         return cell!
@@ -203,7 +168,7 @@ class ChanYeZiXunViewController: UIViewController,UITableViewDelegate,UITableVie
         
         //对留言界面的josn请求：
         let LiuYanSignal:Int=111
-        print("slecetedRow数量是\(NewsModel.instance.selectedRow)")
+        //print("slecetedRow数量是\(NewsModel.instance.selectedRow)")
         let IDWillPost:String=NewsModel.instance.newsID[NewsModel.instance.selectedRow]//Attention1
         LiuYanMessageModel.instance.newsID=IDWillPost
         LiuYanClient.instance.requestForLiuYan(LiuYanSignal, postID: IDWillPost).responseJSON {
@@ -251,9 +216,9 @@ class ChanYeZiXunViewController: UIViewController,UITableViewDelegate,UITableVie
         // Dispose of any resources that can be recreated.
     }
 
-//异步加载网络图片，待尝试
+//异步加载网络图片
     func loadImage(_ rowImgView:UIImageView,getURL:Array<URL>,row:Int){
-        let reSize = CGSize(width: 260, height: 180)
+        let reSize = CGSize(width: 120, height: 120)
         let request=URLRequest(url:getURL[row])
         let session = URLSession.shared
         let dataTask = session.dataTask(with: request, completionHandler: {
@@ -262,8 +227,10 @@ class ChanYeZiXunViewController: UIViewController,UITableViewDelegate,UITableVie
                 print(error.debugDescription)
             }else{
                 //将图片数据赋予UIImage
+                DispatchQueue.main.async{
                 let img = UIImage(data:data!)
                 rowImgView.image=img?.reSizeImage(reSize: reSize)
+                }
             }
         }) as URLSessionTask
         
