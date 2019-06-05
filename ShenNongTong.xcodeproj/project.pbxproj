@@ -1,4 +1,5 @@
 // !$*UTF8*$!
+//  Copyright @ NWAFU
 {
 	archiveVersion = 1;
 	classes = {
