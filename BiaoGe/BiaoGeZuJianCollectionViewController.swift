@@ -10,6 +10,7 @@ import UIKit
 
 //private let reuseIdentifier = "Cell"
 //多列表格组件（通过CollectionView实现）
+//实现步骤
 class UICollectionGridViewController: UICollectionViewController {
     //表头数据
     var cols: [String]! = []
